@@ -1,0 +1,67 @@
+class Ball {
+  
+  private int y,x,dy,dx,size;
+  
+  public Ball(int y, int x, int dx, int dy, int size) {
+    this.y = y;
+    this.x = x;
+    this.dy = dy; 
+    this.dx = dx;
+    this.size = size;
+  }
+  
+  public void update() {
+    move();
+    checkCollisionsWithWalls();
+  }
+  
+  public void move(){
+    y += dy;
+    x+= dx;
+  }
+  
+  public void checkCollisionsWithWalls() {
+    if(isCollidingWithHorizontalWalls()) {
+      setdy(getdy() * -1);
+    }
+    if(isCollidingWithVerticalWalls()) { 
+      setdx(getdx() * -1);
+    }
+  }
+  public boolean isCollidingWithHorizontalWalls(){
+    if(getX()+(getSize()/2) > width || getY() - (getSize()/2) < 0) {
+      return true;
+    }
+    return false;
+  }
+  
+  public void display() {
+    ellipse(x, y, size, size);
+  }
+  public int getY(){
+    return this.y;
+  }
+  
+  public int getX(){
+    return this.x;
+  }
+  
+  public int getSize(){
+    return this.size;
+  }
+  
+  public void setdy(int dy){
+    this.dy = dy;
+  }
+  
+  public void setdx(int dx) {
+    this.dx = dx;
+  }
+  public int getdy() {
+    return this.dy;
+  }
+  
+  public int getdx() {
+    return this.dx;
+  }
+}
